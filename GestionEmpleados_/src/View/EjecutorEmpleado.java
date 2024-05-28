@@ -1,7 +1,8 @@
 package View;
 
 import Controller.Empleado;
-import Model.EscrituraEmpleados;
+import Model.*;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,9 +15,14 @@ public class EjecutorEmpleado {
                 new Empleado("Marco", 1500, 21),
                 new Empleado("Suanny", 2000, 24)));
         try {
-            FileOutputStream pathArchivo = new FileOutputStream("DataEmpleados.dat");
-            EscrituraEmpleados escrituraEmp = new EscrituraEmpleados(listEmp, pathArchivo);
+            FileOutputStream pathArchivoSalida = new FileOutputStream("DataEmpleados.dat");
+            FileInputStream pathArchivoEntrada = new FileInputStream("DataEmpleados.dat");
+            EscrituraEmpleados escrituraEmp = new EscrituraEmpleados(listEmp, pathArchivoSalida);
             escrituraEmp.escribirEmpArchivo();
+            LecturaEmpleados lecturaEmp = new LecturaEmpleados(pathArchivoEntrada);
+            
+            listaEmp2= lectura.Emp();
+            
         } catch (Exception e) {
         }
 
